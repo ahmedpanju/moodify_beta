@@ -1,0 +1,31 @@
+<% var user_options =[]; %>
+<% var options = ["sleep", "diet", "exercise", "mood", "happiness", "sadness"]; %>
+
+<HTML>
+    <head>
+        <% include partials/head.ejs %>
+    </head>
+    <body>
+        <% include partials/navbar3.ejs %>
+        <h1>Let's Create Your Journal</h1>
+        <p>I would like to include the following questions:</p>
+        <div class="container2">
+            <form action='/complete' method="post" class="form_choice">
+                <div class="form_group"><input type="checkbox" name="sleep" value="true" id="sleep"><label>Sleep</label></div>
+                <input type="hidden" name="sleep" value="false" id="sleep2">
+                <div class="form_group"><input type="checkbox" name="diet" value="true" id="diet"><label>Diet</label></div>
+                <input type="hidden" name="diet" value="false" id="diet2">
+                <div class="form_group"><input type="checkbox" name="exercise" value="true" id="exercise"><label>Exercise</label></div>
+                <input type="hidden" name="exercise" value="false" id="exercise2">
+                <div class="form_group"><input type="checkbox" name="mood" value="true" id="mood"><label>Mood</label></div>
+                <input type="hidden" name="mood" value="false" id="mood2">
+                <div class="form_group"><input type="checkbox" name="happiness" value="true" id="happiness"><label>Happiness</label></div>
+                <input type="hidden" name="happiness" value="false" id="happiness2">
+                <div class="form_group"><input type="checkbox" name="sadness" value="true" id="sadness"><label>Sadness</label></div>
+                <input type="hidden" name="sadness" value="false" id="sadness2">
+                <input type="submit" value="Create Journal">
+            </form>
+        </div>    
+        <script type="text/javascript" src="script/selection.js"></script>
+    </body>
+</HTML>

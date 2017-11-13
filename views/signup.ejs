@@ -1,0 +1,42 @@
+<html>
+    <head>
+        <% include partials/head.ejs %>
+    </head>
+    <body>
+        <% include partials/navbar.ejs %>
+
+        <% if (message.length > 0) { %>
+            <div class="alert"><%= message %></div>
+        <% } %>
+        <h1>Sign Up</h1>
+        <p>Already have an account? <a href="/login">Login Here</a></p>
+        <form class="signup" action="/signup" method="post">
+            <label>First Name:</label><br>
+            <input type="text" name="fname"><br><br>
+            <label>Last Name:</label><br>
+            <input type="text" name="lname"><br><br>
+            <label>Email:</label><br>
+            <input type="email" name="email"><br><br>
+            <label>Password:</label><br>
+            <input type="password" name="password"><br><br>
+            <label>Confirm Password:</label><br>
+            <input type="password" name="cpassword"><br><br>
+            <input type="submit" value="Signup">
+        </form>
+    </body>
+</html>
+
+<style>
+    .alert {
+        background: rgba(255, 0, 0, 0.3);
+        padding: 20px;
+        position: absolute;
+        right: 5%;
+        top: 45%;
+        border-radius: 5px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
+        width: 30%;
+        text-align: center; 
+    }
+</style>

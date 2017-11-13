@@ -1,0 +1,80 @@
+<% var user_options =[]; %>
+<% var options = ["sleep", "diet", "exercise", "mood", "happiness", "sadness"]; %>
+<% var panel_number = []; %>
+<HTML>
+    <head>
+        <% include partials/head.ejs %>
+    </head>
+    <style>
+        .show {
+            display: inline;
+            
+        }
+        
+        .hide {
+            display: none;
+        }
+    </style>
+    <body>
+        <% include partials/navbar2.ejs %>
+        <div class="container">
+        
+        <button class="new_journal" onclick="start()">Fill Out Journal<i class="fa fa-plus-circle" aria-hidden="true"></i></button>
+          
+        <form action="journal" method="post">
+            <% for (var i = 0; i < options.length; i++) { %>
+                <% if (user.local.journal_content[i] == "true") { %>
+                    <% panel_number.push(i); %>
+                    <div class="panel" id="<% panel_number[i] %>">
+                        <h1>My <%= options[i] %> today was...</h1>
+                        <input type="range" name="<%= options[i] %>" class="range" max="10" min="1">
+                        <div class="icons">
+                            <i class="fa fa-frown-o" aria-hidden="true" id="uno"></i>
+                            <i class="fa fa-meh-o" aria-hidden="true" id="dos"></i>
+                            <i class="fa fa-smile-o" aria-hidden="true" id="tres"></i>
+                        </div>
+                        <div class="next"></div> 
+                        <input type="submit" value="Complete" class="done"> 
+                    </div>
+                <% } %>    
+            <% } %>
+        </form>  
+    
+        <p id="timer"></p>
+        <script>
+            var elements = document.getElementsByClassName('panel');
+            var length = elements.length - 1;
+            var i = 0;
+            function start() {
+                $(document).ready(function(){
+                    
+                    if(elements.length == 1) {
+                        $(elements[i]).delay(1000).fadeIn();    
+                        $('.done').fadeIn(50)
+                    } else {
+                        $(elements[i]).delay(1000).fadeIn();    
+                        $('.next').fadeIn(50)    
+                    }   
+        
+                    $('.next').click(function(){
+                        $('.next').fadeOut(50);
+                        $(elements[i]).fadeOut(50);
+                        $(elements[i + 1]).fadeIn(50);
+                        i = i + 1;
+                        if(i < length){
+                             $('.next').fadeIn(50);
+                        } else {
+                            $('.next').fadeOut(50);
+                            $('.done').fadeIn(50);
+                        }
+                    });
+                });
+            };
+          
+        </script>
+        <script type="text/javascript" src="/script/profile.js"> </script>
+        </div>    
+    </body> 
+        
+        
+</HTML>

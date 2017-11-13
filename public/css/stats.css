@@ -1,0 +1,166 @@
+body {
+    overflow-x: hidden;
+}
+
+.container {    
+    height: 90vh;
+    position: relative;
+}
+
+.side_panel {
+    z-index: 1;
+    width: 20%;
+    height: 90vh;
+    float: left;
+    margin-top: 0vh;
+    background-color: #E69900;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.side_panel p {
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.side_panel ul {
+    list-style-type: none;
+}
+
+.side_panel ul li {
+    margin-bottom: 20px;
+}
+
+
+.side_panel ul li a{
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.graph_container {
+    width: 80%;
+    height: 90vh;
+    background-color: rgba(0,0,0,0.2);
+    float: right;
+}
+
+.graph {
+    width: 70%;
+    height: 80vh;
+    border-radius: 5px;
+    background-color: #eafafa;
+    position: fixed;
+    right: 0;
+    top: 15%;
+    margin-right: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.y-axis {
+    font-family: 'Open Sans', sans-serif;
+    margin-left: 10px;
+    height: 100%;
+    width: 3%;
+    float: left;
+    border-right: 2px solid black;
+}
+
+.y-axis p {
+    margin-bottom: 24px;
+}
+
+.x-axis {
+    font-family: sans-serif;
+    border-top: 2px solid black;
+    position: absolute;
+    width: 100%;
+    top: 90%;
+    right: 0%;
+}
+
+.x-axis p:first-of-type {
+    margin-left: 100px;
+}
+
+.x-axis p {
+    position: relative;
+    float: left;
+    font-size: 15px;
+    text-align: center;
+    margin-right: 50px;
+    width: 100px;
+}
+
+.bars {
+    position: absolute;
+    width: 100%;
+    height: 79%;
+    top: 30px;
+}
+
+.bars .bar:first-of-type {
+    margin-left: 100px;
+}
+
+.bar {
+    background-color: red;
+    float: left;
+    width: 100px;
+    transition: 0.2s;
+    cursor: pointer;
+    margin-right: 50px;
+    position: absolute;
+}
+
+.more_data {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 10px;
+    transform: rotate(135deg);
+    position: absolute;
+    top: 50%;
+    left: 22%;
+    cursor: pointer;
+}
+
+.less_data {
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 10px;
+    transform: rotate(-45deg);
+    position: absolute;
+    top: 50%;
+    left: 96%;
+    cursor: pointer;
+}
+
+h3 {
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    font-size: 45px;
+    width: 60%;
+    margin: auto;
+    margin-top: 100px;
+}
+
+.journal_back {
+    border: none;
+    cursor: pointer;
+    outline: none;
+    background-color: rgb(0, 172, 230);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    font-size: 30px;
+    padding: 25px;
+    border-radius: 5px;
+    color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 50%);
+}

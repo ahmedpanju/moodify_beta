@@ -1,0 +1,272 @@
+<div class="about_section">
+    <div class="panel" id="first">
+        <h3>How was your overall mood today?</h3> 
+        <div class="slider">
+            <div class="slider_slider">
+                <i class="fa fa-mouse-pointer fa-3x" style="position: relative; left: 10px; top: 10px;" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="faces">
+            <i class="fa fa-frown-o" aria-hidden="true" style="position: absolute; left: 0;"></i>
+            <i class="fa fa-meh-o" aria-hidden="true" style="position: absolute; left: 50%; transform: translate(-50%, 0%);"></i>
+            <i class="fa fa-smile-o" aria-hidden="true" style="position: absolute; right: 0;"></i>
+        </div>
+    </div>
+    <h3 class="panel_title_one">
+        Quick & Easy Mood Tracking
+    </h3>
+    <p class="panel_text_one">
+        Moodify helps keep track of your mood, diet, sleep, and various other factors by creating simple, and easy to fill out journals.
+    </p>
+    <div class="panel" id="second">
+        <h3>Question Types:</h3>
+        <div class="option">Sleep</div>
+        <div class="option">Diet</div>
+        <div class="option">Exercise</div>
+        <div class="option">Mood</div>
+        <div class="option">Happiness</div>
+        <div class="option">Saddness</div>
+    </div>
+    <h3 class="panel_title_two">
+        Create Customized Journals    
+    </h3>
+    <p class="panel_text_two">
+        Have specific goals in mind? Moodify lets you adjust your journals to keep track of the things that you care about.
+    </p>
+    <div class="panel"  id="third">
+        <canvas id="myChart" width="400" height="200"></canvas>
+        <script>
+            var ctx = document.getElementById("myChart").getContext('2d');
+            var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+            datasets: [{
+                label: 'Overall Mood',
+                data: [6, 6, 8, 10, 3, 7, 7],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(0, 255, 255, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)',
+                    'rgba(0, 255, 255, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+    </script>
+    </div>
+    <h3 class="panel_title_three">
+        Track Your Progress        
+    </h3>
+    <p class="panel_text_three">
+        Moodify provides you with beautiful, and easy-to-read graphical data about your moods.
+    </p>
+</div>
+
+<style>
+    .about_section {
+        margin-top: 150px;
+        position: relative;
+        padding-top: 50px;
+    }
+    
+    .about_section .panel {
+        height: 50vh;
+        width: 45%;
+        border: 1px solid red;
+        position: absolute;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        transition: 0.3s;
+    }
+    
+    .about_section .panel:hover {
+        width: 46%;
+        height: 51vh;
+    }
+    
+    .about_section #first {
+        margin-left: 50px;
+        left: 0;
+        background-color: rgba(0, 204, 204, 1);
+        border: none;
+    }
+    
+    #first h3 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 40px;
+        color: white;
+        text-align: center;
+    }
+    
+    #first .slider {
+        height: 25px;
+        width: 80%;
+        background-color: white;
+        margin: auto;
+        position: relative;
+    }
+    
+    #first .slider_slider {
+        width: 5%;
+        height: 50px;
+        background-color: red;
+        position: absolute;
+        left: 50%;
+        top: -50%;
+    }
+    
+    .slider-animation {
+        animation-name: slider-animation;
+        animation-duration: 1s;
+        animation-fill-mode: forwards;
+        animation-delay: 2s;
+    }
+    
+    @keyframes slider-animation {
+        0%{left: 50%;}
+        100%{left: 80%;}
+    }
+    
+    #first .faces {
+        color: white;
+        font-size: 80px;
+        width: 80%;
+        margin: auto;   
+        margin-top: 30px;
+        position: relative;
+    }
+    
+    .about_section #second {
+        top: 400px;
+        right: 0;
+        margin-right: 50px;
+        border: none;
+    }
+    
+    #second h3 {
+        font-family: 'Roboto', sans-serif;
+        font-size: 40px;
+        text-align: center;
+    }
+    
+    #second .option {
+        width: 100px;
+        height: 30px;
+        padding: 10px;
+        color: white;
+        font-family: 'Roboto', sans-serif;
+        font-size: 20px;
+        text-align: center;
+        background-color: rgba(0, 204, 204, 0.7);
+        float: left;
+        margin-left: 20px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+        margin-bottom: 20px;
+    }
+    
+    .about_section #third {
+        top: 800px;
+        left: 0;
+        margin-left: 50px;
+        border: none;
+    }
+    
+    .about_section .panel_title_one {
+        position: absolute;
+        font-family: 'Roboto', sans-serif;
+        font-size: 40px;
+        width: 45%;
+        margin: 0;
+        text-align: center;
+        right: 0;
+        top: 50px;
+        color: rgb(0, 172, 230);
+        margin-right: 50px;
+    }
+    
+    .about_section .panel_text_one {
+        position: absolute;
+        width: 45%;
+        margin: 0;
+        right: 0;
+        top: 150px;
+        text-align: center;
+        margin-right: 50px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
+    }
+    
+    .about_section .panel_title_two {
+        position: absolute;
+        font-family: 'Roboto', sans-serif;
+        font-size: 40px;
+        width: 45%;
+        margin: 0;
+        text-align: center;
+        left: 0;
+        top: 450px;
+        color: rgb(0, 172, 230);
+        margin-left: 50px;
+    }
+    
+    .about_section .panel_text_two {
+        position: absolute;
+        width: 45%;
+        margin: 0;
+        left: 0;
+        top: 550px;
+        text-align: center;
+        margin-left: 50px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
+    }
+    
+    .about_section .panel_title_three {
+        position: absolute;
+        font-family: 'Roboto', sans-serif;
+        font-size: 40px;
+        width: 45%;
+        margin: 0;
+        text-align: center;
+        right: 0;
+        top: 850px;
+        color: rgb(0, 172, 230);
+        margin-right: 50px;
+    }
+    
+    .about_section .panel_text_three {
+        position: absolute;
+        width: 45%;
+        margin: 0;
+        right: 0;
+        top: 950px;
+        text-align: center;
+        margin-right: 50px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
+    }
+    
+    
+</style>

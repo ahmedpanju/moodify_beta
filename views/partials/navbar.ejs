@@ -1,0 +1,59 @@
+<ul class="navbar-top">
+    <li style="border-right: none;"><a class="logo" href="/">Moodify</a></li>
+    <li><a class="about">How it Works</a></li>
+    <li><a class="plans" href="/plans">Proffesionals</a></li>
+    <li><a class="contact" href="/contact">Contact</a></li>
+    <li style="float: right;"><a class="signin" href="/login">Sign In</a></li>
+</ul>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden; 
+    }
+    
+    .navbar-top {
+        z-index: 1;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        list-style-type: none;
+        background-color: rgb(0, 172, 230);
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    }
+    
+    .navbar-top li {
+        float: left;
+        border-right: 1px solid white;
+    }
+    
+    .navbar-top li a {
+        display: block;
+        color: white;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
+        padding: 20px;
+        cursor: pointer;
+        transition: 0.3s;
+        text-decoration: none;
+    }
+    
+    .navbar-top li a:hover:not(.logo) {
+        background-color: rgb(0, 134, 179);
+    }
+    
+    .navbar-top li .logo::first-letter {
+        border-bottom: 3px solid white;
+        border-radius: 10px;
+    }
+
+    .navbar-top li .signin {
+        border-left: 1px solid white;
+    }
+    
+    .navbar-top li .about {
+        margin-left: 50px;
+        border-left: 1px solid white;
+    }
+</style>

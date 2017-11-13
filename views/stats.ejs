@@ -1,0 +1,305 @@
+<HTML>
+    <head>
+        <% include partials/head.ejs %>    
+    </head>
+    <body>
+        <% if (user.local.empty == false) { %>
+
+        <% var colors =["rgba(255, 0, 0, 0.5)", "rgba(0, 102, 255, 0.5)", "rgba(0, 179, 0, 0.5)", "rgba(255, 204, 0, 0.5)", "rgba(255, 102, 0, 0.5)"]; %>
+        <% var colors2 =["rgb(255, 0, 0)", "rgb(0, 102, 255)", "rgb(0, 179, 0)", "rgb(255, 204, 0)", "rgb(255, 102, 0)"]; %>
+        <% var titles = []; %>
+        <% var value; %>
+        <% var new_titles = []; %>
+
+        <% for (var i = 0; i < user.local.user_options.length; i++) { %>
+            <% value = String(user.local.user_options[i]); %>
+            <% titles.push(value); %>
+        <% } %>
+
+        <% for (var i = 0; i < titles.length; i++) { %> 
+            <% new_titles.push(titles[i].charAt(0).toUpperCase() + titles[i].slice(1)); %>
+        <% } %>
+        <% include partials/navbar2.ejs %>
+        <div class="container">
+            <div class="side_panel">
+                <p>Categories:</p>
+                <ul>
+                    <% for (var i = 0; i < new_titles.length; i++) { %>
+                        <li><a id="B<%= i %>"><%= new_titles[i] %></a></li>
+                    <% } %>
+                </ul>
+            </div>   
+            
+            <div class="graph_container">  
+                <% for (var i = 0; i < user.local.user_options.length; i++) { %>
+                <div class="graph" style="display: none;">
+                    <div class="y-axis">
+                        <% for (var x = 10; x > 0; x--){ %>
+                            <p><%= x %></p>
+                        <% } %>
+                    </div>
+                    <% for (var s = 0; s < user.local.date_data[0].length; s++) { %>
+                        <div class="x-axis" id="G<%= i %><%= s %>" style="display: none;">
+                            <% for (var y = 0; y < user.local.date_data[0][s].length; y++) { %>
+                                <p><%= user.local.date_data[0][s][y] %></p>
+                            <% } %>
+                        </div>
+                    <% } %>
+                    
+                    <% for (var j = 0; j < user.local.data[0].length; j++) { %>
+                      <div class="bars" id="D<%= i %><%= j %>" style="display: none;">
+                        <% for (var w = 0; w < user.local.data[0][j].length; w++) { %>
+                            <% if (w == 0) { %>
+                                <div class="bar" style="right: 0; background-color: <%= colors[w] %>; border: 3px solid <%= colors2[w] %>; border-bottom: none; margin-right: 690px; bottom: -27px; height: <%= (user.local.data[i][j][w] * 0.5 * 70) + (user.local.data[i][j][w] * 8) %>;"></div>
+                            <% } else if (w == 1){ %>
+                                <div class="bar" style="right: 0; background-color: <%= colors[w] %>; border: 3px solid <%= colors2[w] %>; border-bottom: none; margin-right: 550px; bottom: -27px; height: <%= (user.local.data[i][j][w] * 0.5 * 70) + (user.local.data[i][j][w] * 8) %>;"></div>
+                            <% } else if (w == 2){ %>
+                                <div class="bar" style="right: 0; background-color: <%= colors[w] %>; border: 3px solid <%= colors2[w] %>; border-bottom: none; margin-right: 400px; bottom: -27px; height: <%= (user.local.data[i][j][w] * 0.5 * 70) + (user.local.data[i][j][w] * 8) %>;"></div>
+                            <% } else if (w == 3) { %>
+                                <div class="bar" style="right: 0; background-color: <%= colors[w] %>; border: 3px solid <%= colors2[w] %>; border-bottom: none; margin-right: 245px; bottom: -27px; height: <%= (user.local.data[i][j][w] * 0.5 * 70) + (user.local.data[i][j][w] * 8) %>;"></div>
+                            <% } else if (w == 4) { %>
+                                <div class="bar" style="right: 0; background-color: <%= colors[w] %>; border: 3px solid <%= colors2[w] %>; border-bottom: none; margin-right: 100px; bottom: -27px; height: <%= (user.local.data[i][j][w] * 0.5 * 70) + (user.local.data[i][j][w] * 8) %>;"></div>
+                            <% } %>
+                        <% } %>
+                    </div>
+                    <%  } %>
+                      
+    
+                   
+                </div>
+            </div>
+        </div>
+                <% } %>
+                
+            <% if(user.local.data[0].length >= 2) { %>
+                <div class="more_data" style="display: none;">
+                
+                </div>    
+            <% } %>
+            
+            <div class="less_data" style="display: none;"></div>
+                
+              
+           <% } else { %>
+                <% include partials/navbar2.ejs %>
+                <h3>Please fill out at least 1 journal to view your stats</h3>
+                <a href="/profile"><button class="journal_back">Go back to journal</button></a>
+            <% } %>
+            
+        
+         <script type="text/javascript" src="/script/<%= logic %>"></script>
+        
+            <script>
+                var graphs = document.getElementsByClassName('graph');
+                var bars = document.getElementsByClassName('bars');
+                var end  = (bars.length / graphs.length) - 1;
+                var start = [0, 1, 2, 3, 4 , 5];
+                var value;
+            
+                $(document).ready(function(){
+                    $(graphs[0]).fadeIn(); 
+                    $('#D' + start[0] + end).fadeIn();
+                    $('.more_data').fadeIn();
+                    $('#G' + start[0] + end).fadeIn();
+                    $('.more_data').click(function(){
+                        $('#D' + start[0] + end).fadeOut();
+                        $('#D' + start[0] + (end - 1)).fadeIn();
+                        $('#G' + start[0] + end).fadeOut();
+                        $('#G' + start[0] + (end - 1)).fadeIn();
+                        $('.less_data').fadeIn();
+                        $('.less_data').click(function(){
+                            $('#D' + start[0] + (end-1)).fadeOut();
+                            $('#D' + start[0] + end).fadeIn();
+                            $('#G' + start[0] + (end -1)).fadeOut();
+                            $('#G' + start[0] + end).fadeIn();
+                            $(this).fadeOut();
+                        });
+                    });
+                    
+                    $('#B0').click(function(){
+                        $('#G' + start[0] + end).fadeIn();
+                        $('#G' + start[0] + (end -1)).fadeOut();
+                        $('#D' + start[0] + (end - 1)).fadeOut(); 
+                        $('.less_data').fadeOut();
+                        $(graphs[0]).fadeIn();  
+                        $(graphs[1]).fadeOut();  
+                        $(graphs[2]).fadeOut();  
+                        $(graphs[3]).fadeOut();  
+                        $(graphs[4]).fadeOut();  
+                        $(graphs[5]).fadeOut(); 
+                        $('#D' + start[0] +  end).fadeIn();
+                        $('.more_data').fadeIn();
+                        $('.more_data').click(function(){
+                            $('#D' + start[0] + end).fadeOut();
+                            $('#D' + start[0] + (end - 1)).fadeIn(); 
+                            $('#G' + start[0] + end).fadeOut();
+                            $('#G' + start[0] + (end - 1)).fadeIn();
+                            $('.less_data').fadeIn();
+                        $('.less_data').click(function(){
+                            $('#D' + start[0] + (end-1)).fadeOut();
+                            $('#D' + start[0] + end).fadeIn();
+                            $('#G' + start[0] + (end -1)).fadeOut();
+                            $('#G' + start[0] + end).fadeIn();
+                            $(this).fadeOut();
+                        });
+                        });
+                    });
+                    
+                    $('#B1').click(function(){
+                        $('#G' + start[1] + end).fadeIn();
+                        $('#G' + start[1] + (end -1)).fadeOut();
+                        $('#D' + start[1] + (end - 1)).fadeOut(); 
+                        $('.less_data').fadeOut();
+                        $(graphs[0]).fadeOut();  
+                        $(graphs[1]).fadeIn();  
+                        $(graphs[2]).fadeOut();  
+                        $(graphs[3]).fadeOut();  
+                        $(graphs[4]).fadeOut();  
+                        $(graphs[5]).fadeOut();  
+                        $('#D' + start[1] + end).fadeIn();
+                        $('.more_data').fadeIn();
+                        $('.more_data').click(function(){
+                            $('#D' + start[1] + end).fadeOut();
+                            $('#D' + start[1] + (end - 1)).fadeIn(); 
+                            $('#G' + start[1] + end).fadeOut();
+                            $('#G' + start[1] + (end - 1)).fadeIn();
+                            $('.less_data').fadeIn();
+                        $('.less_data').click(function(){
+                            $('#D' + start[1] + (end-1)).fadeOut();
+                            $('#D' + start[1] + end).fadeIn();
+                            $('#G' + start[1] + (end -1)).fadeOut();
+                            $('#G' + start[1] + end).fadeIn();
+                            $(this).fadeOut();
+                        });
+                        });
+                    });
+                    
+                    $('#B2').click(function(){
+                        $('#G' + start[2] + end).fadeIn();
+                        $('#G' + start[2] + (end -1)).fadeOut();
+                        $('#D' + start[2] + (end - 1)).fadeOut(); 
+                        $('.less_data').fadeOut();
+                        $(graphs[0]).fadeOut();  
+                        $(graphs[1]).fadeOut();  
+                        $(graphs[2]).fadeIn();  
+                        $(graphs[3]).fadeOut();  
+                        $(graphs[4]).fadeOut();  
+                        $(graphs[5]).fadeOut(); 
+                        $('#D' + start[2] + end).fadeIn();
+                        $('.more_data').fadeIn();
+                        $('.more_data').click(function(){
+                            $('#D' + start[2] + end).fadeOut();
+                            $('#D' + start[2] + (end - 1)).fadeIn(); 
+                            $('#G' + start[2] + end).fadeOut();
+                            $('#G' + start[2] + (end - 1)).fadeIn();
+                            $('.less_data').fadeIn();
+                        $('.less_data').click(function(){
+                            $('#D' + start[2] + (end-1)).fadeOut();
+                            $('#D' + start[2] + end).fadeIn();
+                            $('#G' + start[2] + (end -1)).fadeOut();
+                            $('#G' + start[2] + end).fadeIn();
+                            $(this).fadeOut();
+                        });
+                        });
+                    });
+                    
+                    $('#B3').click(function(){
+                        $('#G' + start[3] + end).fadeIn();
+                        $('#G' + start[3] + (end -1)).fadeOut();
+                        $('#D' + start[3] + (end - 1)).fadeOut(); 
+                        $('.less_data').fadeOut();
+                        $(graphs[0]).fadeOut();  
+                        $(graphs[1]).fadeOut();  
+                        $(graphs[2]).fadeOut();  
+                        $(graphs[3]).fadeIn();  
+                        $(graphs[4]).fadeOut();  
+                        $(graphs[5]).fadeOut();  
+                        $('#D' + start[3] + end).fadeIn();
+                        $('.more_data').fadeIn();
+                        $('.more_data').click(function(){
+                            $('#D' + start[3] + end).fadeOut();
+                            $('#D' + start[3] + (end - 1)).fadeIn();
+                            $('#G' + start[3] + end).fadeOut();
+                            $('#G' + start[3] + (end - 1)).fadeIn();
+                            $('.less_data').fadeIn();
+                        $('.less_data').click(function(){
+                            $('#D' + start[3] + (end-1)).fadeOut();
+                            $('#D' + start[3] + end).fadeIn();
+                            $('#G' + start[3] + (end -1)).fadeOut();
+                            $('#G' + start[3] + end).fadeIn();
+                            $(this).fadeOut();
+                        });
+                        });
+                    });
+                    
+                    $('#B4').click(function(){
+                        $('#G' + start[4] + end).fadeIn();
+                        $('#G' + start[4] + (end -1)).fadeOut();
+                        $('#D' + start[4] + (end - 1)).fadeOut(); 
+                        $('.less_data').fadeOut();
+                        $(graphs[0]).fadeOut();  
+                        $(graphs[1]).fadeOut();  
+                        $(graphs[2]).fadeOut();  
+                        $(graphs[3]).fadeOut();  
+                        $(graphs[4]).fadeIn();  
+                        $(graphs[5]).fadeOut(); 
+                        $('#D' + start[4] + end).fadeIn();
+                        $('.more_data').fadeIn();
+                        $('.more_data').click(function(){
+                            $('#D' + start[4] + end).fadeOut();
+                            $('#D' + start[4] + (end - 1)).fadeIn(); 
+                            $('#G' + start[4] + end).fadeOut();
+                            $('#G' + start[4] + (end - 1)).fadeIn();
+                            $('.less_data').fadeIn();
+                        $('.less_data').click(function(){
+                            $('#D' + start[4] + (end-1)).fadeOut();
+                            $('#D' + start[4] + end).fadeIn();
+                            $('#G' + start[4] + (end -1)).fadeOut();
+                            $('#G' + start[4] + end).fadeIn();
+                            $(this).fadeOut();
+                        });
+                        });
+                    });
+                    
+                    $('#B5').click(function(){
+                        $('#G' + start[5] + end).fadeIn();
+                        $('#G' + start[5] + (end -1)).fadeOut();
+                        $('#D' + start[5] + (end - 1)).fadeOut();
+                        $('.less_data').fadeOut();
+                        $(graphs[0]).fadeOut();  
+                        $(graphs[1]).fadeOut();  
+                        $(graphs[2]).fadeOut();  
+                        $(graphs[3]).fadeOut();  
+                        $(graphs[4]).fadeOut();  
+                        $(graphs[5]).fadeIn();
+                        $('#D' + start[5] + end).fadeIn();
+                        $('.more_data').fadeIn();
+                        $('.more_data').click(function(){
+                            $('#D' + start[5] + end).fadeOut();
+                            $('#D' + start[5] + (end - 1)).fadeIn(); 
+                            $('#G' + start[5] + end).fadeOut();
+                            $('#G' + start[5] + (end - 1)).fadeIn();
+                            $('.less_data').fadeIn();
+                        $('.less_data').click(function(){
+                            $('#D' + start[5] + (end-1)).fadeOut();
+                            $('#D' + start[5] + end).fadeIn();
+                            $('#G' + start[5] + (end -1)).fadeOut();
+                            $('#G' + start[5] + end).fadeIn();
+                            $(this).fadeOut();
+                        });
+                        });
+                    });
+                });
+                
+               
+                  
+     
+            
+            
+            </script>
+    </body>
+</HTML>
+
+
+
+    

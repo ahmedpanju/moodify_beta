@@ -1,0 +1,22 @@
+<HTML>
+    <head>
+        <% include partials/head.ejs %>
+    </head>
+    <body>
+        <% include partials/navbar.ejs %>  
+        
+        <div class="jumbotron">
+            <h1>Mood Tracking Made Ridiculously Easy</h1>
+            <a href="/signup"><button class="jumbotron_button">Start For Free</button></a>
+            <% for (var i = 0; i < 24; i++) { %>
+                <div class="shape<%= i + 1 %>"></div>
+            <% } %>
+        </div>
+        <div class="down_arrow">
+        </div>
+        <% include partials/about.ejs %>
+        <a href="/signup"><button class="start">Get Started</button></a>
+        <% include partials/footer.ejs %>
+        <script type="text/javascript" src="/script/<%= logic %>"></script>
+    </body>
+</HTML>

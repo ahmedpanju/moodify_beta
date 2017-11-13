@@ -1,0 +1,18 @@
+<HTML>
+    <head>
+        <% include partials/head.ejs %>
+    </head>
+    <body>
+        <% include partials/navbar.ejs %>
+        <h1>Let's Get in Touch</h1>
+        <form action="contact" method="post">
+            <label>Name:</label>
+            <input type="text" name="name"><br><br>
+            <label>Email:</label>
+            <input type="email" name="email"><br><br>
+            <label>Message:</label><br><br>
+            <textarea></textarea><br><br>
+            <input type="submit" value="Send">
+        </form>
+    </body>
+</HTML>

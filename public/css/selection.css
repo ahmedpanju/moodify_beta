@@ -1,0 +1,77 @@
+h1 {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+    font-size: 70px;
+}
+
+p {
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    margin-left: 100px;
+    margin-top: 50px;
+}
+
+.container2 {
+    width: 810px;
+    position: absolute;
+    left: 50%;
+    top: 35%;
+    transform: translate(-50%, 50%);
+    height: 200px;
+}
+
+.form_choice:first-child {
+    margin-left: 30px;
+}
+
+.form_group {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    float: left;
+    margin-right: 30px;
+}
+
+label {
+    color: black;
+    position: absolute;
+    left: 40%;
+    top: 30%;
+    transform: translate(-35%, 50%);
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    transition: 0.3s;
+}
+
+input[type=checkbox] {
+     -webkit-appearance: none;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(179, 224, 255);
+    margin: 0;
+    transition: 0.3s;
+    outline: none;
+    cursor: pointer;
+}
+
+
+input[type=checkbox]:checked {
+    background-color:rgb(0, 138, 230);
+}
+
+input[type=checkbox]:checked + label {
+    color: white;
+}
+
+input[type=submit] {
+    position: absolute;
+    top: 100%;
+    border: none;
+    font-size: 25px;
+    padding: 20px;
+    cursor: pointer;
+    outline: none;
+    background-color: rgb(0, 122, 204);
+    color: white;
+    border-radius: 10px;
+}

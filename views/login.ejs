@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <% include partials/head.ejs %>
+    </head>
+    <body>
+        <% include partials/navbar.ejs %>
+
+    <!-- show any messages that come back with authentication -->
+    <% if (message.length > 0) { %>
+        <div class="alert"><%= message %></div>
+    <% } %>
+        
+        <h1>Login</h1>
+        <p>Don't have an account? <a href="/signup">Signup Here</a></p>
+        <form class="login" action="/login" method="post">
+            <label>Email:</label><br>
+            <input type="text" name="email"><br><br>
+            <label>Password:</label><br>
+            <input type="password" name="password"><br><br>
+            <input type="submit" value="Login">
+        </form>
+    </body>
+</html>
+
+<style>
+    .alert {
+        background: rgba(255, 0, 0, 0.3);
+        padding: 20px;
+        position: absolute;
+        right: 5%;
+        top: 45%;
+        border-radius: 5px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
+        width: 30%;
+        text-align: center; 
+        }
+    
+</style>

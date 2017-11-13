@@ -1,0 +1,30 @@
+{
+  "name": "Moodify",
+  "version": "1.0.0",
+  "main": "server.js",
+    
+  "dependencies": {
+    "bcrypt-nodejs": "*",
+    "body-parser": "*",
+    "bson": "^1.0.4",
+    "connect-flash": "*",
+    "cookie-parser": "*",
+    "ejs": "*",
+    "express": "*",
+    "express-session": "*",
+    "gulp": "^3.9.1",
+    "method-override": "*",
+    "moment": "^2.19.1",
+    "mongoose": "*",
+    "morgan": "*",
+    "passport": "*",
+    "passport-facebook": "*",
+    "passport-google-oauth": "*",
+    "passport-local": "*",
+    "passport-twitter": "*",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "gulp-strip-comments": "^2.5.1"
+  }
+}
